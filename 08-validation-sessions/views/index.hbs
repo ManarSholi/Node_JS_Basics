@@ -1,0 +1,56 @@
+<h1>{{ title }}</h1>
+<p>Welcome to {{ title }}</p>
+
+{{!-- <form action="/test/submit" method="post">
+  <input type="text" name="id"/>
+  <button type="submit">Submit</button>
+</form> --}}
+
+{{!-- {{# if condition }}
+  Condition is met
+{{ else }}
+  Condition not met
+{{/if}}
+
+<br>
+
+{{# each anyArr}}
+  {{ this }}
+{{/each}}
+
+<br>
+
+{{# each anyArr as |value key|}}
+  {{ key }}: {{ value }} <br>
+{{/each}} --}}
+
+{{# if success }}
+  <section class="success">
+    <h2>Successful Validation!</h2>
+  </section>
+{{ else }}
+  {{# if errors }}
+    <section class="errors">
+      <ul>
+        {{# each errors }}
+          <li>{{ this.msg }}</li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
+  <form action="/submit" method="post">
+    <div class="input">
+      <label for="email">E-Mail</label><br/>
+      <input type="text" id="email" name="email">
+    </div>
+    <div class="input">
+      <label for="password">Password</label><br/>
+      <input type="password" id="password" name="password">
+    </div>
+    <div class="input">
+      <label for="confirmPassword">Confirm Password</label><br/>
+      <input type="password" id="confirmPassword" name="confirmPassword">
+    </div>
+    <button type="submit">Sign up</button>
+  </form>
+{{/if}}

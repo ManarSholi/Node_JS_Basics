@@ -1,0 +1,20 @@
+<h1>{{ title }}</h1>
+<p>Welcome to {{ title }}</p>
+
+{{# if condition }}
+  Condition is met
+{{ else }}
+  Condition not met
+{{/if}}
+
+<br>
+
+{{# each anyArr}}
+  {{ this }}
+{{/each}}
+
+<br>
+
+{{# each anyArr as |value key|}}
+  {{ key }}: {{ value }} <br>
+{{/each}}

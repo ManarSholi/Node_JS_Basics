@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center;
+}
+
+section {
+  max-width: 200px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px;
+  height: 300px;
+}
+
+hr {
+  margin-bottom: 5px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+form button {
+  width: fit-content;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+  color: black;
+}
+
+.insert {
+  background-color: #4BC85C;
+}
+
+.get {
+  background-color: #EBEEF1;
+}
+
+.update {
+  background-color: #4B88DB;
+}
+
+.delete {
+  background-color: #D44530;
+}
+
+button[type="submit"] {
+  padding: 5px;
+}
+
+.get {
+  overflow: scroll;
+}
+
+.book {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.get-link {
+  margin-bottom: 2px;
+}
+
+.item div {
+  text-align: center;
+}

@@ -1,0 +1,139 @@
+<main>
+  <h1>MongoDB - Exercise</h1>
+  <div class="main">
+    <section class="insert">
+      <p>Insert Data</p>
+      <hr/>
+      <form action="/insert" method="post">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" type="text" name="title" />
+        </div>
+        <div>
+          <label for="content">Content</label>
+          <input id="content" type="text" name="content" />
+        </div>
+        <div>
+          <label for="author">Author</label>
+          <input id="author" type="text" name="author" />
+        </div>
+        <button type="submit">Insert</button>
+      </form>
+    </section>
+    <section class="get">
+      <p>Get Data</p>
+      <hr/>
+      <div>
+        <a class="get-link" href="/books">Load Data</a>
+        {{# if error }}
+          <p>{{ error }}</p>
+        {{ else }}
+          {{# each items as |value key| }}
+              <article class="item">
+                <div>
+                  <a class="book" href="/books/{{ value._id }}">{{ value.title }}</a>
+                </div>
+                <hr/>
+              </article>
+          {{/each}}
+        {{/if}}
+      </div>
+    </section>
+    <section class="update">
+      <p>Update Data</p>
+      <hr/>
+      <form id="updateForm">
+        <div>
+          <label for="up_id">ID</label>
+          <input id="up_id" type="text" name="id" />
+        </div>
+        <div>
+          <label for="up_title">Title</label>
+          <input id="up_title" type="text" name="title" />
+        </div>
+        <div>
+          <label for="up_content">Content</label>
+          <input id="up_content" type="text" name="content" />
+        </div>
+        <div>
+          <label for="up_author">Author</label>
+          <input id="up_author" type="text" name="author" />
+        </div>
+        <button type="button" onclick="updateData()">Update</button>
+      </form>
+    </section>
+    <section class="delete">
+      <p>Delete Data</p>
+      <hr/>
+      <form>
+        <div>
+          <label for="del_id">ID</label>
+          <input id="del_id" type="text" name="del_id" />
+        </div>
+        <button type="button" onclick="deleteData()">Delete</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    function updateData() {
+      let id = document.getElementById('up_id').value;
+      let url = `/books/${id}`;
+
+      let formData = {
+        title: document.getElementById('up_title').value,
+        content: document.getElementById('up_content').value,
+        author: document.getElementById('up_author').value
+      }
+
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Updated data:', data.updatedBook);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation: ', error);
+      });
+
+      window.location.href = '/books';
+    }
+
+    function deleteData() {
+      const bookId = document.getElementById('del_id').value;
+      const url = `/books/${bookId}`;
+
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (! response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        return response.json();
+      })
+      .then(data => {
+        console.log('Deleted data: ', data.deletedBook);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation: ', error);
+      });
+
+      window.location.href = '/books';
+    }
+  </script>
+</main>
